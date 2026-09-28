@@ -1,0 +1,1518 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram Group Chat Guide - AMWA</title>
+    <style>
+      :root {
+        --ig-blue: #0095f6;
+        --ig-dark: #262626;
+        --ig-gray: #8e8e8e;
+        --ig-light: #fafafa;
+        --ig-border: #dbdbdb;
+        --ig-green: #00a67e;
+        --accent: #405de6;
+        --gradient-start: #833ab4;
+        --gradient-mid: #fd1d1d;
+        --gradient-end: #fcb045;
+        --card-bg: #ffffff;
+        --page-bg: #f8f9fb;
+        --text: #1a1a2e;
+        --text-light: #64748b;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+        --shadow-lg: 0 4px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        background: var(--page-bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      /* Header */
+      .header {
+        background: linear-gradient(
+          135deg,
+          var(--gradient-start),
+          var(--gradient-mid),
+          var(--gradient-end)
+        );
+        color: white;
+        padding: 48px 24px 56px;
+        text-align: center;
+      }
+      .header-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .header h1 {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        line-height: 1.2;
+      }
+      .header p {
+        font-size: 16px;
+        opacity: 0.9;
+        max-width: 560px;
+        margin: 0 auto;
+      }
+
+      /* Container */
+      .container {
+        max-width: 800px;
+        margin: -32px auto 48px;
+        padding: 0 20px;
+      }
+
+      /* Section Cards */
+      .section-card {
+        background: var(--card-bg);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 32px;
+        margin-bottom: 24px;
+      }
+      .section-card h2 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+      .section-card h3 {
+        font-size: 17px;
+        font-weight: 700;
+        margin: 24px 0 12px;
+        color: var(--text);
+      }
+      .section-card p,
+      .section-card li {
+        font-size: 15px;
+        color: var(--text-light);
+        line-height: 1.7;
+      }
+      .section-card ul,
+      .section-card ol {
+        padding-left: 20px;
+        margin: 12px 0;
+      }
+      .section-card li {
+        margin-bottom: 8px;
+      }
+      .section-subtitle {
+        color: var(--text-light);
+        font-size: 15px;
+        margin-bottom: 20px;
+      }
+
+      /* Step blocks */
+      .step-block {
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+        margin: 28px 0;
+      }
+      .step-block.reverse {
+        flex-direction: row-reverse;
+      }
+      .step-text {
+        flex: 1;
+        min-width: 0;
+      }
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--ig-blue);
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-bottom: 8px;
+      }
+      .step-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .step-desc {
+        font-size: 14px;
+        color: var(--text-light);
+        line-height: 1.6;
+      }
+
+      /* Phone Mockup */
+      .phone-mockup {
+        flex-shrink: 0;
+        width: 220px;
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        border: 2px solid #e8e8e8;
+      }
+      .phone-status-bar {
+        background: var(--ig-light);
+        padding: 6px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--ig-dark);
+      }
+      .phone-status-icons {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .phone-status-icons span {
+        font-size: 10px;
+      }
+
+      /* Instagram Nav Bar */
+      .ig-nav {
+        background: #fff;
+        padding: 10px 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--ig-border);
+      }
+      .ig-nav-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--ig-dark);
+      }
+      .ig-nav-icons {
+        display: flex;
+        gap: 12px;
+      }
+      .ig-icon {
+        width: 22px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .ig-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      /* Instagram DM List */
+      .ig-dm-list {
+        padding: 0;
+      }
+      .ig-dm-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .ig-dm-item.highlighted {
+        background: #e8f4fd;
+      }
+      .ig-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        color: white;
+      }
+      .ig-avatar.purple {
+        background: linear-gradient(135deg, #833ab4, #c13584);
+      }
+      .ig-avatar.blue {
+        background: linear-gradient(135deg, #405de6, #5b51d8);
+      }
+      .ig-avatar.orange {
+        background: linear-gradient(135deg, #f77737, #fcb045);
+      }
+      .ig-avatar.green {
+        background: linear-gradient(135deg, #00a67e, #2ecc71);
+      }
+      .ig-avatar.group-avatar {
+        background: linear-gradient(
+          135deg,
+          var(--gradient-start),
+          var(--gradient-end)
+        );
+        font-size: 10px;
+      }
+      .ig-dm-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .ig-dm-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ig-dark);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .ig-dm-preview {
+        font-size: 12px;
+        color: var(--ig-gray);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .ig-dm-time {
+        font-size: 11px;
+        color: var(--ig-gray);
+        flex-shrink: 0;
+      }
+
+      /* Compose screen */
+      .ig-compose-bar {
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--ig-border);
+      }
+      .ig-compose-to {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--ig-dark);
+        flex-wrap: wrap;
+      }
+      .ig-compose-to span {
+        font-weight: 600;
+      }
+      .ig-compose-input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 13px;
+        color: var(--ig-gray);
+        background: transparent;
+      }
+      .ig-search-box {
+        margin: 8px 14px;
+        padding: 8px 12px;
+        background: var(--ig-light);
+        border-radius: 8px;
+        font-size: 13px;
+        color: var(--ig-gray);
+      }
+      .ig-chip {
+        display: inline-block;
+        background: #e0f0ff;
+        color: var(--ig-blue);
+        font-size: 12px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 12px;
+        margin: 2px 3px;
+      }
+      .ig-suggested-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ig-dark);
+        padding: 8px 14px 4px;
+      }
+      .ig-user-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+      }
+      .ig-user-row .ig-avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+      }
+      .ig-user-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ig-dark);
+      }
+      .ig-user-handle {
+        font-size: 12px;
+        color: var(--ig-gray);
+      }
+      .ig-checkbox {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid var(--ig-border);
+        margin-left: auto;
+        flex-shrink: 0;
+      }
+      .ig-checkbox.checked {
+        background: var(--ig-blue);
+        border-color: var(--ig-blue);
+        position: relative;
+      }
+      .ig-checkbox.checked::after {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 6px;
+        width: 5px;
+        height: 8px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      /* Group Chat Screen */
+      .ig-chat-area {
+        padding: 10px 14px;
+        min-height: 180px;
+        background: #fff;
+      }
+      .ig-message {
+        margin-bottom: 8px;
+        display: flex;
+        flex-direction: column;
+      }
+      .ig-message.sent {
+        align-items: flex-end;
+      }
+      .ig-message.received {
+        align-items: flex-start;
+      }
+      .ig-message-bubble {
+        padding: 8px 12px;
+        border-radius: 18px;
+        max-width: 80%;
+        font-size: 13px;
+        line-height: 1.4;
+      }
+      .ig-message.sent .ig-message-bubble {
+        background: var(--ig-blue);
+        color: white;
+        border-bottom-right-radius: 4px;
+      }
+      .ig-message.received .ig-message-bubble {
+        background: #efefef;
+        color: var(--ig-dark);
+        border-bottom-left-radius: 4px;
+      }
+      .ig-message-sender {
+        font-size: 11px;
+        color: var(--ig-gray);
+        margin-bottom: 2px;
+        font-weight: 600;
+      }
+      .ig-shared-post {
+        background: #fff;
+        border: 1px solid var(--ig-border);
+        border-radius: 12px;
+        overflow: hidden;
+        max-width: 80%;
+        margin-bottom: 8px;
+      }
+      .ig-shared-post-header {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 10px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ig-dark);
+      }
+      .ig-shared-post-header .ig-avatar {
+        width: 20px;
+        height: 20px;
+        font-size: 8px;
+      }
+      .ig-shared-post-image {
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 11px;
+        font-weight: 600;
+        text-align: center;
+        padding: 8px;
+      }
+      .ig-shared-post-caption {
+        padding: 8px 10px;
+        font-size: 12px;
+        color: var(--ig-dark);
+        line-height: 1.4;
+      }
+
+      /* Share Sheet */
+      .ig-share-sheet {
+        background: #fff;
+        border-top: 1px solid var(--ig-border);
+        padding: 12px 14px;
+      }
+      .ig-share-row {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        padding-bottom: 8px;
+      }
+      .ig-share-target {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        min-width: 56px;
+      }
+      .ig-share-target .ig-avatar {
+        width: 48px;
+        height: 48px;
+        font-size: 12px;
+      }
+      .ig-share-target-name {
+        font-size: 10px;
+        color: var(--ig-dark);
+        text-align: center;
+        max-width: 56px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .ig-share-target.selected .ig-avatar {
+        box-shadow: 0 0 0 2px var(--ig-blue);
+      }
+      .ig-send-btn {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px;
+        background: var(--ig-blue);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      /* Post view */
+      .ig-post-view {
+        background: #fff;
+      }
+      .ig-post-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+      }
+      .ig-post-header .ig-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 10px;
+      }
+      .ig-post-username {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--ig-dark);
+      }
+      .ig-post-image {
+        width: 100%;
+        height: 140px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center;
+        padding: 12px;
+      }
+      .ig-post-actions {
+        display: flex;
+        gap: 14px;
+        padding: 10px 14px 6px;
+      }
+      .ig-post-action {
+        font-size: 18px;
+        cursor: pointer;
+      }
+      .ig-post-action.share-highlight {
+        position: relative;
+      }
+      .ig-post-action.share-highlight::after {
+        content: "";
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        bottom: -4px;
+        left: -4px;
+        border: 2px solid var(--ig-blue);
+        border-radius: 8px;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+      .ig-post-likes {
+        padding: 0 14px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ig-dark);
+      }
+      .ig-post-caption-area {
+        padding: 6px 14px 10px;
+        font-size: 12px;
+        color: var(--ig-dark);
+        line-height: 1.5;
+      }
+      .ig-post-caption-area strong {
+        font-weight: 600;
+      }
+
+      /* Chat input bar */
+      .ig-chat-input {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-top: 1px solid var(--ig-border);
+        background: #fff;
+      }
+      .ig-chat-input-field {
+        flex: 1;
+        padding: 8px 12px;
+        border-radius: 20px;
+        border: 1px solid var(--ig-border);
+        font-size: 13px;
+        color: var(--ig-gray);
+        background: transparent;
+      }
+
+      /* Highlight Arrow / Callout */
+      .callout {
+        position: relative;
+        background: var(--ig-blue);
+        color: white;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 6px;
+        display: inline-block;
+        margin: 2px;
+      }
+
+      /* Info boxes */
+      .info-box {
+        background: #f0f7ff;
+        border-left: 4px solid var(--ig-blue);
+        border-radius: 8px;
+        padding: 16px 20px;
+        margin: 16px 0;
+      }
+      .info-box.warning {
+        background: #fff8f0;
+        border-left-color: #f5a623;
+      }
+      .info-box.tip {
+        background: #f0fff4;
+        border-left-color: var(--ig-green);
+      }
+      .info-box-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .info-box p {
+        font-size: 14px;
+        color: var(--text-light);
+        margin: 0;
+      }
+
+      /* Limits Table */
+      .limits-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+        font-size: 14px;
+      }
+      .limits-table th {
+        text-align: left;
+        padding: 10px 12px;
+        background: var(--ig-light);
+        border-bottom: 2px solid var(--ig-border);
+        font-weight: 700;
+        color: var(--text);
+        font-size: 13px;
+      }
+      .limits-table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #f0f0f0;
+        color: var(--text-light);
+        vertical-align: top;
+      }
+      .limits-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* Comparison Cards */
+      .compare-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 16px 0;
+      }
+      .compare-card {
+        background: var(--ig-light);
+        border-radius: 12px;
+        padding: 20px;
+        border: 2px solid transparent;
+      }
+      .compare-card.recommended {
+        border-color: var(--ig-blue);
+        background: #f0f7ff;
+      }
+      .compare-card-badge {
+        display: inline-block;
+        background: var(--ig-blue);
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 10px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .compare-card h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+      .compare-card p {
+        font-size: 13px;
+        color: var(--text-light);
+        margin-bottom: 12px;
+      }
+      .compare-pros,
+      .compare-cons {
+        font-size: 13px;
+        margin: 4px 0;
+        padding-left: 0;
+        list-style: none;
+      }
+      .compare-pros li::before {
+        content: "+  ";
+        color: var(--ig-green);
+        font-weight: 700;
+      }
+      .compare-cons li::before {
+        content: "-  ";
+        color: #e74c3c;
+        font-weight: 700;
+      }
+      .compare-pros li,
+      .compare-cons li {
+        margin-bottom: 4px;
+        color: var(--text-light);
+      }
+
+      /* Tips */
+      .tip-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 16px 0;
+      }
+      .tip-card {
+        background: var(--ig-light);
+        border-radius: 12px;
+        padding: 16px;
+      }
+      .tip-icon {
+        font-size: 20px;
+        margin-bottom: 6px;
+      }
+      .tip-card h4 {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: var(--text);
+      }
+      .tip-card p {
+        font-size: 13px;
+        color: var(--text-light);
+        margin: 0;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 32px 20px;
+        color: var(--text-light);
+        font-size: 13px;
+      }
+      .footer a {
+        color: var(--ig-blue);
+        text-decoration: none;
+      }
+
+      /* Responsive */
+      @media (max-width: 700px) {
+        .header h1 {
+          font-size: 24px;
+        }
+        .container {
+          padding: 0 12px;
+        }
+        .section-card {
+          padding: 20px;
+        }
+        .step-block {
+          flex-direction: column;
+        }
+        .step-block.reverse {
+          flex-direction: column;
+        }
+        .phone-mockup {
+          width: 100%;
+          max-width: 260px;
+          margin: 0 auto;
+        }
+        .compare-grid {
+          grid-template-columns: 1fr;
+        }
+        .tip-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header">
+      <div class="header-badge">Prepared by Earned Impact</div>
+      <h1>Instagram Group Chat Guide</h1>
+      <p>
+        How to set up a group message to coordinate post resharing with your
+        branches, step by step with screenshots.
+      </p>
+    </div>
+
+    <div class="container">
+      <!-- Overview -->
+      <div class="section-card">
+        <h2>What This Solves</h2>
+        <p class="section-subtitle">
+          Right now, asking branches to reshare AMWA posts means sending mass
+          emails every time. An Instagram group chat gives you a faster, simpler
+          way to share a post and ask everyone to reshare it, all in one
+          message, right where the content lives.
+        </p>
+        <div class="info-box">
+          <div class="info-box-title">How it works in practice</div>
+          <p>
+            You publish a post on the AMWA Instagram account, share it into the
+            group chat, and add a quick note like "Please reshare to your
+            Stories this week." Branches tap the post right in the chat and
+            reshare it with one tap.
+          </p>
+        </div>
+      </div>
+
+      <!-- STEP 1: Open Messages -->
+      <div class="section-card">
+        <h2>Step 1: Open Your Messages</h2>
+        <p class="section-subtitle">
+          Tap the message icon in the top right corner of Instagram. It looks
+          like a paper airplane (or the Messenger icon on some versions).
+        </p>
+
+        <div class="step-block">
+          <div class="step-text">
+            <p class="step-desc">
+              From your Instagram home feed or profile, look at the
+              <strong>top right corner</strong>. You will see a paper airplane
+              icon (or a chat bubble with a lightning bolt on newer versions).
+              Tap it to open your Direct Messages inbox.
+            </p>
+            <div class="info-box tip" style="margin-top: 12px">
+              <p>
+                If you are on the AMWA business account, make sure you are
+                logged into that account before starting, not your personal
+                account.
+              </p>
+            </div>
+          </div>
+          <div class="phone-mockup">
+            <div class="phone-status-bar">
+              <span>9:41</span>
+              <div class="phone-status-icons">
+                <span>&#9679;&#9679;&#9679;</span>
+              </div>
+            </div>
+            <div class="ig-nav">
+              <div class="ig-nav-title">amwa_official</div>
+              <div class="ig-nav-icons">
+                <div class="ig-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </div>
+                <div class="ig-icon" style="position: relative">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#0095f6"
+                    stroke-width="2.5"
+                  >
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon
+                      points="22 2 15 22 11 13 2 9 22 2"
+                      fill="none"
+                    ></polygon>
+                  </svg>
+                  <span
+                    class="callout"
+                    style="
+                      position: absolute;
+                      top: -8px;
+                      right: -16px;
+                      font-size: 8px;
+                    "
+                    >TAP</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                padding: 40px 14px;
+                text-align: center;
+                color: var(--ig-gray);
+                font-size: 12px;
+              "
+            >
+              <div style="font-size: 36px; margin-bottom: 8px">&#9993;</div>
+              Your messages<br />will appear here
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2: Create New Group -->
+      <div class="section-card">
+        <h2>Step 2: Start a New Group Message</h2>
+        <p class="section-subtitle">
+          Tap the compose icon (pencil) in the top right, then search for and
+          select each branch account.
+        </p>
+
+        <div class="step-block reverse">
+          <div class="step-text">
+            <p class="step-desc">
+              Once your inbox opens, tap the
+              <strong>pencil/compose icon</strong> in the top right. This opens
+              the "New Message" screen.
+            </p>
+            <p class="step-desc" style="margin-top: 12px">
+              In the "To:" field at the top,
+              <strong>search for each branch's Instagram handle</strong> one at
+              a time. Tap each one to add them to the group. You will see blue
+              chips appear as you add people.
+            </p>
+            <p class="step-desc" style="margin-top: 12px">
+              Once you have added everyone, tap <strong>"Chat"</strong> at the
+              top right to create the group.
+            </p>
+          </div>
+          <div class="phone-mockup">
+            <div class="phone-status-bar">
+              <span>9:41</span>
+              <div class="phone-status-icons">
+                <span>&#9679;&#9679;&#9679;</span>
+              </div>
+            </div>
+            <div class="ig-nav">
+              <div class="ig-nav-title">New Message</div>
+              <div
+                style="color: var(--ig-blue); font-size: 14px; font-weight: 600"
+              >
+                Chat
+              </div>
+            </div>
+            <div class="ig-compose-bar">
+              <div class="ig-compose-to">
+                <span>To:</span>
+                <span class="ig-chip">amwa_chicago</span>
+                <span class="ig-chip">amwa_dallas</span>
+                <span class="ig-chip">amwa_la</span>
+              </div>
+            </div>
+            <div class="ig-search-box">Search...</div>
+            <div class="ig-suggested-label">Suggested</div>
+            <div class="ig-user-row">
+              <div class="ig-avatar green">NY</div>
+              <div>
+                <div class="ig-user-name">amwa_newyork</div>
+                <div class="ig-user-handle">AMWA New York</div>
+              </div>
+              <div class="ig-checkbox"></div>
+            </div>
+            <div class="ig-user-row">
+              <div class="ig-avatar orange">AT</div>
+              <div>
+                <div class="ig-user-name">amwa_atlanta</div>
+                <div class="ig-user-handle">AMWA Atlanta</div>
+              </div>
+              <div class="ig-checkbox"></div>
+            </div>
+            <div class="ig-user-row">
+              <div class="ig-avatar blue">SF</div>
+              <div>
+                <div class="ig-user-name">amwa_sanfran</div>
+                <div class="ig-user-handle">AMWA San Francisco</div>
+              </div>
+              <div class="ig-checkbox checked"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: Name the Group -->
+      <div class="section-card">
+        <h2>Step 3: Name the Group</h2>
+        <p class="section-subtitle">
+          Give the group a clear name so branches know exactly what it is for.
+        </p>
+
+        <div class="step-block">
+          <div class="step-text">
+            <p class="step-desc">
+              After the group is created, tap the
+              <strong>group name at the top</strong> of the chat screen. This
+              lets you rename it to something clear and recognizable.
+            </p>
+            <div class="info-box tip" style="margin-top: 12px">
+              <div class="info-box-title">Suggested name</div>
+              <p>
+                <strong>"AMWA Branch Post Sharing"</strong> keeps it obvious so
+                nobody wonders what the group is for.
+              </p>
+            </div>
+          </div>
+          <div class="phone-mockup">
+            <div class="phone-status-bar">
+              <span>9:41</span>
+              <div class="phone-status-icons">
+                <span>&#9679;&#9679;&#9679;</span>
+              </div>
+            </div>
+            <div class="ig-nav">
+              <div style="display: flex; align-items: center; gap: 8px">
+                <div
+                  class="ig-avatar group-avatar"
+                  style="width: 28px; height: 28px; font-size: 8px"
+                >
+                  ALL
+                </div>
+                <div>
+                  <div class="ig-nav-title" style="font-size: 14px">
+                    AMWA Branch Post Sharing
+                  </div>
+                  <div style="font-size: 11px; color: var(--ig-gray)">
+                    12 members
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ig-chat-area" style="min-height: 140px">
+              <div
+                style="
+                  text-align: center;
+                  padding: 20px 10px;
+                  color: var(--ig-gray);
+                  font-size: 12px;
+                "
+              >
+                <div
+                  class="ig-avatar group-avatar"
+                  style="
+                    width: 56px;
+                    height: 56px;
+                    margin: 0 auto 8px;
+                    font-size: 14px;
+                  "
+                >
+                  ALL
+                </div>
+                <div
+                  style="
+                    font-weight: 600;
+                    color: var(--ig-dark);
+                    font-size: 14px;
+                  "
+                >
+                  AMWA Branch Post Sharing
+                </div>
+                <div style="margin-top: 4px">You created this group</div>
+              </div>
+            </div>
+            <div class="ig-chat-input">
+              <div class="ig-chat-input-field">Message...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: Share a Post -->
+      <div class="section-card">
+        <h2>Step 4: Share a Post to the Group</h2>
+        <p class="section-subtitle">
+          When you publish a new post, share it directly into the group chat so
+          branches can reshare it.
+        </p>
+
+        <div class="step-block reverse">
+          <div class="step-text">
+            <ol style="padding-left: 20px">
+              <li>Go to the post on the AMWA profile</li>
+              <li>
+                Tap the <strong>share icon</strong> (paper airplane) underneath
+                the post
+              </li>
+              <li>
+                A share sheet appears - select the
+                <strong>group chat</strong> from the list
+              </li>
+              <li>
+                Add a quick note like
+                <em>"Please reshare to your Stories by Friday!"</em>
+              </li>
+              <li>Hit <strong>Send</strong></li>
+            </ol>
+            <p class="step-desc" style="margin-top: 12px">
+              The post will appear in the chat as a tappable card. Branches can
+              tap it, then tap "Add to Story" to reshare with one tap.
+            </p>
+          </div>
+          <div class="phone-mockup">
+            <div class="phone-status-bar">
+              <span>9:41</span>
+              <div class="phone-status-icons">
+                <span>&#9679;&#9679;&#9679;</span>
+              </div>
+            </div>
+            <div class="ig-post-view">
+              <div class="ig-post-header">
+                <div
+                  class="ig-avatar purple"
+                  style="width: 28px; height: 28px; font-size: 9px"
+                >
+                  AM
+                </div>
+                <div class="ig-post-username">amwa_official</div>
+              </div>
+              <div class="ig-post-image">AMWA Post<br />Image Here</div>
+              <div class="ig-post-actions">
+                <span class="ig-post-action">&#9825;</span>
+                <span class="ig-post-action">&#128172;</span>
+                <span class="ig-post-action share-highlight">&#9992;</span>
+                <span style="margin-left: auto" class="ig-post-action"
+                  >&#9734;</span
+                >
+              </div>
+              <div class="ig-post-likes">42 likes</div>
+              <div class="ig-post-caption-area">
+                <strong>amwa_official</strong> Join us for...
+              </div>
+            </div>
+            <div class="ig-share-sheet">
+              <div
+                style="
+                  font-size: 12px;
+                  font-weight: 600;
+                  color: var(--ig-dark);
+                  margin-bottom: 8px;
+                "
+              >
+                Send to
+              </div>
+              <div class="ig-share-row">
+                <div class="ig-share-target selected">
+                  <div
+                    class="ig-avatar group-avatar"
+                    style="width: 48px; height: 48px; font-size: 10px"
+                  >
+                    ALL
+                  </div>
+                  <div class="ig-share-target-name">Branch Sharing</div>
+                </div>
+                <div class="ig-share-target">
+                  <div
+                    class="ig-avatar blue"
+                    style="width: 48px; height: 48px; font-size: 12px"
+                  >
+                    CH
+                  </div>
+                  <div class="ig-share-target-name">amwa_chicago</div>
+                </div>
+                <div class="ig-share-target">
+                  <div
+                    class="ig-avatar orange"
+                    style="width: 48px; height: 48px; font-size: 12px"
+                  >
+                    DA
+                  </div>
+                  <div class="ig-share-target-name">amwa_dallas</div>
+                </div>
+              </div>
+              <div class="ig-send-btn">Send</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5: What Branches See -->
+      <div class="section-card">
+        <h2>Step 5: What Branches See</h2>
+        <p class="section-subtitle">
+          Here is what it looks like from a branch's perspective when they open
+          the group chat.
+        </p>
+
+        <div class="step-block">
+          <div class="step-text">
+            <p class="step-desc">
+              Branches open the group chat and see the shared post as a
+              <strong>tappable card</strong> along with your message.
+            </p>
+            <p class="step-desc" style="margin-top: 12px">
+              To reshare, they tap the post card, which opens it full-screen.
+              From there they can:
+            </p>
+            <ul>
+              <li>
+                <strong>Add to Story</strong> - one tap, disappears after 24
+                hours (easiest ask)
+              </li>
+              <li>
+                <strong>Repost to Feed</strong> - creates a permanent post on
+                their profile (bigger ask)
+              </li>
+            </ul>
+            <div class="info-box tip" style="margin-top: 12px">
+              <div class="info-box-title">Best practice</div>
+              <p>
+                Default to asking for Story reshares. They are quick and
+                low-effort for branches. Save feed reposts for your most
+                important content.
+              </p>
+            </div>
+          </div>
+          <div class="phone-mockup">
+            <div class="phone-status-bar">
+              <span>9:41</span>
+              <div class="phone-status-icons">
+                <span>&#9679;&#9679;&#9679;</span>
+              </div>
+            </div>
+            <div class="ig-nav">
+              <div style="display: flex; align-items: center; gap: 8px">
+                <div
+                  class="ig-avatar group-avatar"
+                  style="width: 24px; height: 24px; font-size: 7px"
+                >
+                  ALL
+                </div>
+                <div class="ig-nav-title" style="font-size: 13px">
+                  AMWA Branch Post Sharing
+                </div>
+              </div>
+            </div>
+            <div class="ig-chat-area">
+              <div class="ig-message sent">
+                <div class="ig-shared-post">
+                  <div class="ig-shared-post-header">
+                    <div class="ig-avatar purple">AM</div>
+                    amwa_official
+                  </div>
+                  <div class="ig-shared-post-image">AMWA Post<br />Image</div>
+                  <div class="ig-shared-post-caption">
+                    <strong>amwa_official:</strong> Join us for our annual...
+                  </div>
+                </div>
+              </div>
+              <div class="ig-message sent">
+                <div class="ig-message-bubble">
+                  Please reshare this to your Stories by Friday! Thank you!
+                </div>
+              </div>
+              <div class="ig-message received">
+                <div class="ig-message-sender">amwa_chicago</div>
+                <div class="ig-message-bubble">Done! Shared to our Story</div>
+              </div>
+              <div class="ig-message received">
+                <div class="ig-message-sender">amwa_dallas</div>
+                <div class="ig-message-bubble">Shared!</div>
+              </div>
+            </div>
+            <div class="ig-chat-input">
+              <div class="ig-chat-input-field">Message...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Limits & Restrictions -->
+      <div class="section-card">
+        <h2>Limits and Restrictions</h2>
+        <p class="section-subtitle">
+          Everything you need to know about what Instagram does and does not
+          allow with group chats.
+        </p>
+
+        <table class="limits-table">
+          <thead>
+            <tr>
+              <th>Limit</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Group size</strong></td>
+              <td>
+                Up to <strong>250 members</strong> per group (including you). If
+                AMWA has more than 249 branches, you would create a second
+                group.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Daily messages</strong></td>
+              <td>
+                Instagram allows roughly
+                <strong>50 to 200 messages per day</strong> depending on account
+                age and history. For a few reshare requests per week, you will
+                never come close to this.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Message length</strong></td>
+              <td>
+                <strong>1,000 characters</strong> per message (including
+                spaces). More than enough for a reshare request.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Forwarding</strong></td>
+              <td>
+                You can only forward a message to
+                <strong>5 chats at a time</strong>. Not an issue since you are
+                posting directly into one group.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Who can be added</strong></td>
+              <td>
+                Branch accounts must <strong>follow the AMWA account</strong> or
+                have DM requests open. Otherwise your messages go to their
+                "Requests" folder and may be missed.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Business account label</strong></td>
+              <td>
+                When a Business account sends a DM, Instagram shows a small gray
+                "business chat" label. This is normal and cosmetic only.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="info-box warning">
+          <div class="info-box-title">Before you create the group</div>
+          <p>
+            Send a quick email to branches asking them to
+            <strong>follow the main AMWA Instagram account</strong> first. This
+            ensures they will receive the group messages in their primary inbox,
+            not buried in Message Requests.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <div class="info-box-title">What about spam flags?</div>
+          <p>
+            Instagram watches for spammy behavior (mass messaging, rapid-fire
+            sending, repetitive text). Sending a few reshare requests per week
+            to a group of people who already follow you is completely normal
+            use. You will not trigger any restrictions. If you ever did get
+            temporarily limited, it lifts automatically in 24 to 48 hours.
+          </p>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="section-card">
+        <h2>Tips for Keeping the Group Effective</h2>
+
+        <div class="tip-grid">
+          <div class="tip-card">
+            <div class="tip-icon">&#128204;</div>
+            <h4>Pin important messages</h4>
+            <p>
+              Long-press a message to pin it to the top. Great for standing
+              instructions like "reshare within 48 hours."
+            </p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">&#128263;</div>
+            <h4>Muting is okay</h4>
+            <p>
+              Let branches know they can mute notifications. They will still see
+              messages when they open the chat.
+            </p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">&#127919;</div>
+            <h4>Keep it focused</h4>
+            <p>
+              Use this group only for reshare requests. If it turns into a
+              general chat, people will stop checking it.
+            </p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-icon">&#128197;</div>
+            <h4>Set clear deadlines</h4>
+            <p>
+              "Please reshare by Friday" gets much better follow-through than
+              "please share this."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group Chat vs Broadcast Channel -->
+      <div class="section-card">
+        <h2>Alternative: Broadcast Channel</h2>
+        <p class="section-subtitle">
+          Instagram also offers Broadcast Channels. Here is how they compare so
+          you can decide what works best.
+        </p>
+
+        <div class="compare-grid">
+          <div class="compare-card recommended">
+            <div class="compare-card-badge">Recommended</div>
+            <h4>Group Chat</h4>
+            <p>Everyone can send and read messages. Works like a group text.</p>
+            <ul class="compare-pros">
+              <li>Two-way communication</li>
+              <li>Branches can confirm they reshared</li>
+              <li>Can ask questions or coordinate</li>
+              <li>Simple to set up</li>
+            </ul>
+            <ul class="compare-cons">
+              <li>Max 250 members</li>
+              <li>Can get noisy if people chat</li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <h4>Broadcast Channel</h4>
+            <p>
+              Only you can send messages. Branches can react with emojis and
+              polls only.
+            </p>
+            <ul class="compare-pros">
+              <li>No member limit</li>
+              <li>Stays clean and organized</li>
+              <li>Feels more official</li>
+            </ul>
+            <ul class="compare-cons">
+              <li>Branches cannot reply</li>
+              <li>No confirmation of reshares</li>
+              <li>Less personal</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-box-title">Our recommendation</div>
+          <p>
+            Start with the group chat. It gives you two-way communication, which
+            is valuable when building this habit with branches. If the group
+            gets too large (250+) or too noisy, you can always switch to a
+            Broadcast Channel later.
+          </p>
+        </div>
+      </div>
+
+      <!-- Next Steps -->
+      <div class="section-card">
+        <h2>Quick Start Checklist</h2>
+        <ol>
+          <li>
+            <strong>Email branches first</strong> - ask everyone to follow the
+            main AMWA Instagram account (so they receive the group messages)
+          </li>
+          <li>
+            <strong>Create the group chat</strong> - follow Steps 1 through 3
+            above
+          </li>
+          <li>
+            <strong>Send a welcome message</strong> - introduce the purpose:
+            "This group is for reshare requests. When we post something, we will
+            drop it here and ask you to share it to your Stories."
+          </li>
+          <li>
+            <strong>Share your first post</strong> - follow Steps 4 and 5 above
+            to test the flow
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>
+        Prepared for AMWA by <strong>Earned Impact</strong> &middot; September
+        2026
+      </p>
+    </div>
+  </body>
+</html>
